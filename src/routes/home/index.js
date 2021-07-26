@@ -13,5 +13,5 @@ router.get('/login', ctrl.login);
 
 module.exports = router;
 
-//log.js와의 연결을 위해 라우터를 외부파일에서 사용할 수 있게 해주는 역할
+//log.js와의 연결을 위해 라우터를 외부파일에서 사용할 수 있게 해주는 역할 
      //외부로 내보내기 해주는 명령어

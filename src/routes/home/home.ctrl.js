@@ -20,9 +20,6 @@ const users = {
 
 const process = {
   login: (req, res) => {
-    // const user = new User(req.body);
-    // const response = user.login();
-    // return res.json(response);
     const id = req.body.id,
     psword = req.body.psword;
  
@@ -33,7 +30,9 @@ const process = {
       const idx = users.id.indexOf(id);
       if (users.psword[idx] === psword) {
         response.success = true;
-        return res.json();
+        return res.json({
+          success : true,
+        });
       }
     }
 

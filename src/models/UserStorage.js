@@ -4,7 +4,6 @@ class UserStorage {
   static #users = {      //변수 은닉화 
     id: ['hyunlee', 'jo', 'han'],
     psword: ['0000', '1111', '2222'],
- 
     name: ['이현', '조성윤', '한규태'],
   };
 
@@ -17,6 +16,17 @@ class UserStorage {
       return newUsers;    //return되는 newUsers가 다음 파라미터로 들어가면서 계속해서 반복 
         }, {});
     return newUsers;
+  }
+  static getUsersInfo(id) {
+    const users = this.#users;
+    const idx = users.id.indexOf(id);
+    const usersKeys = Object.keys(users);        
+    const userInfo = usersKeys.reduce((newUser, info) => {
+      newUser[info] = users[info][idx];
+      return newUser;
+    }, {});
+
+    return userInfo;
   }
 } 
 

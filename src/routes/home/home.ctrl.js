@@ -1,5 +1,6 @@
 "use strict";
 
+const User = require('../../models/User');
 const UserStorage = require('../../models/UserStorage');
 
 const output = {
@@ -12,25 +13,12 @@ const output = {
   },
 };
 
+// 기존 로직 없이 'users.login'으로만 login기능을 가능하게 구현
 const process = {
   login: (req, res) => {
-    const id = req.body.id,
-    psword = req.body.psword;
- 
-    const users = UserStorage.getUsers('id','psword');   //로그인 검증 기능
-
-    const response = {};    //오브젝트 생성
-    if (users.id.includes(id)) {
-      const idx = users.id.indexOf(id);
-      if (users.psword[idx] === psword) {
-        response.success = true;
-        return res.json(response);
-      }
-    }
-    response.success = false;
-    response.msg = 'login실패';
+    const user = new User(req.body);
+    const response = user.login();
     return res.json(response);
-
   },
 };
 

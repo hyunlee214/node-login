@@ -5,7 +5,7 @@
 
 const id = document.querySelector('#id'),   //ejs파일 안 태그
   psword = document.querySelector('#psword'),
-  loginBtn = document.querySelector('button');
+  loginBtn = document.querySelector('#button');
 
 loginBtn.addEventListener('click', login);
 
@@ -15,7 +15,7 @@ function login() {
     psword: psword.value,
   };
 
-  fetch('/login', {
+  fetch('/login', { 
     method: "POST",
     headers: {
       "Content-Type" : "application/json",

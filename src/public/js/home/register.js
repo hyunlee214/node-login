@@ -11,11 +11,16 @@ const id = document.querySelector('#id'),   //ejs파일 안 태그
 registerBtn.addEventListener('click', register);
 
 function register() {
+  if (!id.value) return alert ('아이디를 꼭 입력해주세요'); 
+
+  if (psword.value !== confirmPsword.value) {
+    return alert('비밀번호가 서로 다릅니다');
+  }
+
   const req = {
     id : id.value,
     name : name.value,
     psword: psword.value,
-    confirmPsword : confirmPsword.value,
   };
  
 

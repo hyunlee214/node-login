@@ -28,6 +28,14 @@ class UserStorage {
 
     return userInfo;
   }
+
+  static save(userInfo) {                 // 클라이언트에서 전달한 데이터를 저장해주는 함수 생성
+    const users = this.#users;
+    users.id.push(userInfo.id);
+    users.name.push(userInfo.name);
+    users.psword.push(userInfo.psword);
+    return { success : true }; 
+  }
 } 
 
 module.exports = UserStorage;

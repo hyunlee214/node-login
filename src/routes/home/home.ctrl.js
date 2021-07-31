@@ -18,9 +18,9 @@ const output = {
 
 // 기존 로직 없이 'users.login'으로만 login기능을 가능하게 구현
 const process = {
-  login: (req, res) => {
+  login: async (req, res) => {
     const user = new User(req.body);
-    const response = user.login();
+    const response = await user.login();
     return res.json(response);
   },
   register: (req, res) => {

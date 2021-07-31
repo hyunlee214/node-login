@@ -4,7 +4,17 @@ const e = require('express');
 const fs = require('fs').promises;    // fs를 이용해 파일에 접근
 
 class UserStorage {
-
+  static #getUserInfo(data, id) {       //private한 변수나 메서드는 항상 클래스의 최상단에 위치하는게 좋음. 
+    const users = JSON.parse(data);
+    const idx = users.id.indexOf(id);
+    const usersKeys = Object.keys(users);        
+    const userInfo = usersKeys.reduce((newUser, info) => {
+      newUser[info] = users[info][idx];
+      return newUser;
+    }, {});
+    
+    return userInfo;
+  }
 
   static getUsers(...fields) {
     // const users = this.#users;
@@ -19,17 +29,7 @@ class UserStorage {
   static getUsersInfo(id) {
     return fs.readFile('./src/databases/users.json')
     .then(data => {
-      const users = JSON.parse(data);
-      const idx = users.id.indexOf(id);
-      const usersKeys = Object.keys(users);        
-      const userInfo = usersKeys.reduce((newUser, info) => {
-        newUser[info] = users[info][idx];
-        return newUser;
-      }, {});
-      
-      console.log(userInfo);
-      return userInfo;
-
+      return this.#getUserInfo(data, id);
     })
     .catch(console.error); 
   }

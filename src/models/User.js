@@ -5,21 +5,21 @@
 const UserStorage = require("./UserStorage");
 
 class User {
-  constructor(body) {
+  constructor(body) { 
     this.body = body;
   }
 
   login() {
     const client = this.body;
-    const { id, psword }= UserStorage.getUsersInfo(client.id);
+    UserStorage.getUsersInfo(client.id);
 
-    if (id) {
-     if (id === client.id && psword === client.psword) {
-       return { success : true };    // id가 같으면 true 리턴
-      }  
-      return { success : false, msg : '비밀번호가 틀립니다'};    // id존재, but비번이 다르면 
-    }
-    return { success : false, msg : '없는 아이디입니다'};      //id가 존재하지 않으면 
+    // if (id) {
+    //  if (id === client.id && psword === client.psword) {
+    //    return { success : true };    // id가 같으면 true 리턴
+    //   }  
+    //   return { success : false, msg : '비밀번호가 틀립니다'};    // id존재, but비번이 다르면 
+    // }
+    // return { success : false, msg : '없는 아이디입니다'};      //id가 존재하지 않으면 
   }
 
   register() {

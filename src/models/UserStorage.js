@@ -1,7 +1,7 @@
 "use strict";
 
 const e = require('express');
-const fs = require('fs');    // fs를 이용해 파일에 접근
+const fs = require('fs').promises;    // fs를 이용해 파일에 접근
 
 class UserStorage {
 
@@ -17,19 +17,21 @@ class UserStorage {
     return newUsers;
   }
   static getUsersInfo(id) {
-    // const users = this.#users;
-    fs.readFile('./src/databases/users.json', (err, data) => {     //hyunlee - database, users - table
-      if (err) throw err;
-      console.log(JSON.parse(data));
-    }); 
-    // const idx = users.id.indexOf(id);
-    // const usersKeys = Object.keys(users);        
-    // const userInfo = usersKeys.reduce((newUser, info) => {
-    //   newUser[info] = users[info][idx];
-    //   return newUser;
-    // }, {});
+    return fs.readFile('./src/databases/users.json')
+    .then(data => {
+      const users = JSON.parse(data);
+      const idx = users.id.indexOf(id);
+      const usersKeys = Object.keys(users);        
+      const userInfo = usersKeys.reduce((newUser, info) => {
+        newUser[info] = users[info][idx];
+        return newUser;
+      }, {});
+      
+      console.log(userInfo);
+      return userInfo;
 
-    // return userInfo;
+    })
+    .catch(console.error); 
   }
 
   static save(userInfo) {                 // 클라이언트에서 전달한 데이터를 저장해주는 함수 생성

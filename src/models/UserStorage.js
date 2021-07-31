@@ -18,7 +18,7 @@ class UserStorage {
   }
   static getUsersInfo(id) {
     // const users = this.#users;
-    fs.readFile('./package.json', (err, data) => {
+    fs.readFile('./src/databases/users.json', (err, data) => {     //hyunlee - database, users - table
       if (err) throw err;
       console.log(JSON.parse(data));
     }); 

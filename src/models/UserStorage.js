@@ -50,7 +50,7 @@ class UserStorage {
   static async save(userInfo) {                 // 클라이언트에서 전달한 데이터를 저장해주는 함수 생성
     const users = await this.getUsers(true);
     if (users.id.includes(userInfo.id)) {
-      return new Error('이미 존재하는 아이디입니다.');
+      throw Error('이미 존재하는 아이디입니다.');
     } 
     users.id.push(userInfo.id);
     users.name.push(userInfo.name);

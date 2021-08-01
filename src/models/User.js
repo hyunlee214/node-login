@@ -23,11 +23,16 @@ class User {
     return { success : false, msg : '없는 아이디입니다'};       //id가 존재하지 않으면 
   }
 
-  register() {
+  async register() {
     const client = this.body;
-    const response = UserStorage.save(client);
+    try {
+    const response = await UserStorage.save(client);
+    console.log(response);
     return response;
+  } catch (err) {
+    console.error(err);
   }
+}
 }
  
 module.exports = User;

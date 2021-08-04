@@ -2,7 +2,6 @@
 
 const db = require("../config/db");
 const e = require('express');
-/*const fs = require("fs").promises;    // fs를 이용해 파일에 접근 */
 
 class UserStorage {
 

@@ -39,7 +39,5 @@ module.exports = User;
 
 
 
-
-
 // if (id === this.body.id && psword === this.body.psword)
 // storage에서 가져온 id,pw와 사용자가 입력한 id,pw가 같은지  

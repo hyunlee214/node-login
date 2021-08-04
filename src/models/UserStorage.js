@@ -35,9 +35,13 @@ class UserStorage {
   }
 
   static getUserInfo(id) {
+    return new Promise((resolve, reject) => {         // Promise안에 있는 구문이 성공하면 resolve값, 실패하면 reject값 실행
     db.query("SELECT * FROM users WHERE id = ?",[id], (err, data) => {
-      console.log(data);
-    }); 
+        if (err) reject(err);
+        console.log(data[0]);
+        resolve(data[0]);
+      });  
+  });
   }
 
   static async save(userInfo) {

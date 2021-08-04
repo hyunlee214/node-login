@@ -7,8 +7,6 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-//const PORT = 3000;
-
 //라우팅
 const home = require('./src/routes/home');
 

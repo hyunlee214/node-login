@@ -1,7 +1,5 @@
 "use strict";
 
- 
-
 const id = document.querySelector('#id'),   //ejs파일 안 태그
   name = document.querySelector('#name'),
   psword = document.querySelector('#psword'),

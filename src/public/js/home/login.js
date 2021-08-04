@@ -1,8 +1,5 @@
 "use strict";
 
-//console.log('test');
-//console.log('tesging');
-
 const id = document.querySelector('#id'),   //ejs파일 안 태그
   psword = document.querySelector('#psword'),
   loginBtn = document.querySelector('#button');

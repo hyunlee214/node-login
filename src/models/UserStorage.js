@@ -1,10 +1,10 @@
 "use strict";
 
 const e = require('express');
-const fs = require('fs').promises;    // fs를 이용해 파일에 접근
+const fs = require("fs").promises;    // fs를 이용해 파일에 접근
 
 class UserStorage {
-  static #getUserInfo(data, fields) {       //private한 변수나 메서드는 항상 클래스의 최상단에 위치하는게 좋음. 
+  static #getUserInfo(data, id) {       //private한 변수나 메서드는 항상 클래스의 최상단에 위치하는게 좋음. 
     const users = JSON.parse(data);
     const idx = users.id.indexOf(id);
     const usersKeys = Object.keys(users);        
@@ -32,16 +32,16 @@ class UserStorage {
   static getUsers(isAll, ...fields) {
     return fs
     .readFile('./src/databases/users.json')
-    .then(data => {
+    .then((data) => {
       return this.#getUsers(data, isAll, fields);
     })
     .catch(console.error); 
   }
 
-  static getUsersInfo(id) {
+  static getUserInfo(id) {
     return fs
     .readFile('./src/databases/users.json')
-    .then(data => {
+    .then((data) => {
       return this.#getUserInfo(data, id);
     })
     .catch(console.error); 
@@ -50,7 +50,7 @@ class UserStorage {
   static async save(userInfo) {                 // 클라이언트에서 전달한 데이터를 저장해주는 함수 생성
     const users = await this.getUsers(true);
     if (users.id.includes(userInfo.id)) {
-      throw ('이미 존재하는 아이디입니다.');
+      throw '이미 존재하는 아이디입니다.';
     } 
     users.id.push(userInfo.id);
     users.name.push(userInfo.name);
@@ -58,6 +58,6 @@ class UserStorage {
     fs.writeFile('./src/databases/users.json', JSON.stringify(users));
     return { success: true };
   }
-}   
+}
 
 module.exports = UserStorage;

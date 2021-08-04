@@ -11,17 +11,17 @@ class User {
 
   async login() {      // await사용시 비동기 async사용
     const client = this.body;
-    const {id, psword} = await UserStorage.getUserInfo(client.id);
+    await UserStorage.getUserInfo(client.id);
     // * await 은 promise를 반환하는 경우에서만 사용가능
 
-    if (id) {
-     if (id === client.id && psword === client.psword) {
-       return { success : true };    // id가 같으면 true 리턴
-      }  
-      return { success : false, msg : '비밀번호가 틀립니다'};    // id존재, but비번이 다르면 
-    }
-    return { success : false, msg : '없는 아이디입니다'};    //id가 존재하지 않으면 
-  }
+  //   if (id) {
+  //    if (id === client.id && psword === client.psword) {
+  //      return { success : true };    // id가 같으면 true 리턴
+  //     }  
+  //     return { success : false, msg : '비밀번호가 틀립니다'};    // id존재, but비번이 다르면 
+  //   }
+  //   return { success : false, msg : '없는 아이디입니다'};    //id가 존재하지 않으면 
+   }
 
   async register() {
     const client = this.body;

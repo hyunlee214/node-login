@@ -35,7 +35,7 @@ class UserStorage {
   }
 
   static getUserInfo(id) {
-    db.query("SELECT * FROM users", (err, data) => {
+    db.query("SELECT * FROM users WHERE id = ?",[id], (err, data) => {
       console.log(data);
     }); 
   }
